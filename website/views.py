@@ -12,7 +12,7 @@ import os
 from botocore.exceptions import ClientError
 from dotenv import load_dotenv
 
-load_dotenv()
+#load_dotenv()
 
 views = Blueprint('views', __name__)
 
