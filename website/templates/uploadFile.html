@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1 align="center">File Upload</h1>
+
+<ul class="list-group list-group-flush" id="notes">
+    {% for file in  files %}
+    <li class="list-group-item">
+        <a href="#" id="downloadButton" onclick="console.log({{ user.id }}, '{{ file }}');return url( {{ user.id }}, '{{ file }}' );">{{ file }}</a>
+        <a href="/delete-file?id={{ user.id }}&filename={{ file }}">
+            <button type="button" class="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </a>
+    </li>
+{% endfor %}
+</ul>
+
+<div class="card" style="width:400px" >
+    <div class="card-body ">
+      <form action="/upload-file" method="post" enctype="multipart/form-data">
+      <p class="card-text">Choose a file to upload it to AWS S3</p>
+        <input type="file" name="file" value="file">
+        <hr>
+      <input type="submit" name="upload" value="Upload" class="btn btn-success">
+      </form>
+    </div>
+  </div>
+{% endblock %}
